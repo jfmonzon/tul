@@ -76,5 +76,14 @@
             @yield('content')
         </main>
     </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="{{asset('general/js/jquery-3.4.1.min.js')}}"></script>
+        <script src="{{asset('general/js/popper.min.js')}}"></script>
+        <script src="{{asset('general/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('js/jquery.validate.js')}}"></script>
+        <script src="{{asset('js/additional-methods.js')}}"></script>
+        <script src="{{asset('general/js/menu.js')}}"></script>
+        <script src="{{asset('js/index.js')}}"></script>
+        @yield('valida')
 </body>
 </html>

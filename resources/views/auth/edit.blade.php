@@ -5,17 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registro') }}</div>
+                <div class="card-header">{{ __('Editar Usuario') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                        @csrf
+                    <form method="POST" action="{{ route('registro.update') }}" enctype="multipart/form-data"  method="POST" name="form_update">
+                       
                         
                         <div class="form-group row">
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus >
+                                <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ $registro->nombre }}" required autocomplete="nombre" autofocus >
 
                                 @error('nombre')
                                     <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
                             <label for="apellido" class="col-md-4 col-form-label text-md-right">{{ __('Apellido') }}</label>
 
                             <div class="col-md-6">
-                                <input id="apellido" type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{ old('apellido') }}" required autocomplete="apellido" >
+                                <input id="apellido" type="text" class="form-control @error('apellido') is-invalid @enderror" name="apellido" value="{{ $registro->apellido }}" required autocomplete="apellido" >
 
                                 @error('apellido')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                             <label for="cedula" class="col-md-4 col-form-label text-md-right">{{ __('Cédula') }}</label>
 
                             <div class="col-md-6">
-                                <input id="cedula" type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ old('cedula') }}" required autocomplete="cedula" >
+                                <input id="cedula" type="text" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ $registro->cedula }}" required autocomplete="cedula" >
 
                                 @error('cedula')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                             <label for="ocupacion" class="col-md-4 col-form-label text-md-right">{{ __('Ocupación') }}</label>
 
                             <div class="col-md-6">
-                                <input id="ocupacion" type="text" class="form-control @error('ocupacion') is-invalid @enderror" name="ocupacion" value="{{ old('ocupacion') }}" required autocomplete="ocupacion" >
+                                <input id="ocupacion" type="text" class="form-control @error('ocupacion') is-invalid @enderror" name="ocupacion" value="{{ $registro->ocupacion }}" required autocomplete="ocupacion" >
 
                                 @error('ocupacion')
                                     <span class="invalid-feedback" role="alert">
@@ -70,9 +70,9 @@
                             <div class="col-md-6">
                                 <select class="form-control form-control-sm" id="ciudad" name="ciudad">
                                     <option value>{{__('Seleccione una ciudad')}}</option>
-                                    <option value="Bogotá"  @if ("Bogotá" == old('ciudad')) selected @endif >Bogotá</option>
-                                    <option value="Calí"  @if ("Calí" == old('ciudad')) selected @endif   >Calí</option>
-                                    <option value="Barranquilla"  @if ("Barranquilla" == old('ciudad')) selected @endif  >Barranquilla</option>
+                                    <option value="Bogotá"  @if ("Bogotá" == $registro->ciudad) selected @endif >Bogotá</option>
+                                    <option value="Calí"  @if ("Calí" == $registro->ciudad) selected @endif   >Calí</option>
+                                    <option value="Barranquilla"  @if ("Barranquilla" == $registro->ciudad) selected @endif  >Barranquilla</option>
                                   
                                 </select>
 
@@ -90,8 +90,8 @@
                             <div class="col-md-6">
                                 <select class="form-control form-control-sm" id="rol" name="rol">
                                     <option value>{{__('Seleccione un rol')}}</option>
-                                    <option value="Administrador" @if ("Administrador" == old('rol')) selected @endif  >Administrador</option>
-                                    <option value="Usuario"  @if ("Usuario" == old('rol')) selected @endif  >Usuario</option>
+                                    <option value="Administrador" @if ("Administrador" == $registro->rol) selected @endif  >Administrador</option>
+                                    <option value="Usuario"  @if ("Usuario" == $registro->rol) selected @endif  >Usuario</option>
                                 </select>
 
                                 @error('rol')
@@ -106,7 +106,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo Electrónico') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $registro->email }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -141,7 +141,7 @@
                             <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto de pefil') }}</label>
 
                             <div class="col-md-6">
-                                <input id="foto" type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" value="{{ old('foto') }}" required autocomplete="foto" >
+                                <input id="foto" type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" value="{{ $registro->foto }}" required autocomplete="foto" >
 
                                 @error('foto')
                                     <span class="invalid-feedback" role="alert">
@@ -157,6 +157,8 @@
                                 </button>
                             </div>
                         </div>
+                        @method('PUT')
+                        @csrf
                     </form>
                 </div>
             </div>
