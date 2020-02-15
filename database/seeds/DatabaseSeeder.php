@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')
             ->insert([
-                'foto'=>'',
+                'foto'=>'foto.jpg',
                 'nombre'=>'Administrador',
-                'apellido'=>'Admon',
-                'ocupacion'=>'Administrador',
+                'apellido'=>'Tuls',
+                'ocupacion'=>'Administrador  de la aplicación',
                 'ciudad'=>'Bogotá',
                 'cedula'=>'123456789',
                 'email'=>'admon@administrador.com',
@@ -32,11 +32,11 @@ class DatabaseSeeder extends Seeder
 
             DB::table('users')
             ->insert([
-                'foto'=>'',
+                'foto'=>'foto.jpg',
                 'nombre'=>'Usuario',
-                'apellido'=>'User',
-                'ocupacion'=>'Usuario',
-                'ciudad'=>'Cali',
+                'apellido'=>'Tuls',
+                'ocupacion'=>'Usuario de la aplicación',
+                'ciudad'=>'Calí',
                 'cedula'=>'987654321',
                 'email'=>'user@usuario.com',
                 'password'=>bcrypt('usuario'),

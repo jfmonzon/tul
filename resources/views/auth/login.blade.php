@@ -1,21 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
+    <div >
+        <div class=" links">
+            <a href="{{ url('/') }}">Inicio</a>
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                
                 <div class="card-header">{{ __('Login') }}</div>
-
+                 <div class="flex-center position-ref full-height">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    
+                    <form method="POST" action="{{ route('login') }}" name="form_login" id="form_login">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Login') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +37,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -70,4 +78,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('valida')
+<script src="{{asset('js/login/login.js')}}" type="text/javascript"></script>
 @endsection

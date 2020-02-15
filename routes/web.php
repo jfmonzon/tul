@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('users/{user}',  ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+Route::put('users/{user}/desactivar',  ['as' => 'users.desactivar', 'uses' => 'UserController@desactivar']);
+Route::put('users/{user}/update',  ['as' => 'users.update', 'uses' => 'UserController@update']);
+Route::delete('users/{user}/delete',  ['as' => 'users.delete', 'uses' => 'UserController@delete']);
+Route::post('/logout','Auth\LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');

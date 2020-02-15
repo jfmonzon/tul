@@ -7,45 +7,54 @@ $(document).ready(function()
             return true;
         }
     });
-
-    var min=parseInt($("#usu_password").attr('min_pass'));
-    var max=parseInt($("#usu_password").attr('max_pass'));
+ //'nombre', 'apellido', 'ocupacion', 'ciudad', 'cedula', 'estatus', 'rol',  'email', 'password',
     $("#form_registro").validate({
         rules:
         {
-            usu_nombre:
+            nombre:
             {
                 required:true,
                 minlength:3,
             },
-            usu_apellidos:
+            apellido:
             {
                 required:true,
                 minlength:3,
             },
-            tipdoc_id:
+            cedula:
             {
                 required:true,
             },
-            usu_documento:
+            ciudad:
+            {
+                required:true,
+            },
+            ocupacion:
             {
                 required:true,
                 minlength:5,
             },
-            usu_password:
+           
+            rol:
             {
                 required:true,
-                minlength:min,
-                maxlength:max,
+               
             },
-            usu_passwordConfirmation:
+            pasword:
             {
                 required:true,
-                minlength:min,
-                maxlength:max,
-                equalTo:"#usu_password",
+               
             },
-            usu_email:
+            foto:
+            {
+                extension:"jpeg|png|jpg|gif|svg",
+            },
+            password_confirm:
+            {
+                required:true,
+                equalTo:"#password",
+            },
+            email:
             {
                 required:true,
                 email:true,
@@ -57,47 +66,51 @@ $(document).ready(function()
         },
         messages:
         {
-            usu_nombre:
+            nombre:
             {
                 required: "Debe escribir su nombre",
-                minlength: "Su nombre debe tener al menos 3 caracteres."
+                minlength: "Su(s) nombre(s) debe(n) tener al menos 3 caracteres."
+               
             },
-            usu_apellidos:
+           apellidos:
             {
                 required: "Debe escribir su(s) apellido(s)",
                 minlength: "Su(s) apellido(s) debe(n) tener al menos 3 caracteres."
             },
-            tipdoc_id:
+            ocupacion:
             {
-                required: "Debe seleccionar su tipo de documento",
+                required: "Debe seleccionar su ocupacion",
             },
-            usu_documento:
+            
+            cedula:
             {
                 required: "Debe escribir su número de documento",
-                minlength: "Su número de documento debe tener mínimo 5 caracteres."
+                
             },
-            usu_password:
+            password:
             {
                 required: "Debe escribir una contraseña",
-                minlength: "Su contraseña debe tener al menos "+min+" caracteres.",
-                maxlength: "Su contraseña puede tener máximo "+max+" caracteres."
+               
             },
-            usu_passwordConfirmation:
+            password_confirm:
             {
                 required: "Debe confirmar la contraseña",
-                minlength: "Su contraseña debe tener al menos "+min+" caracteres.",
-                maxlength: "Su contraseña puede tener máximo "+max+" caracteres.",
+                
                 equalTo: "La contraseña y la confirmación deben coincidir",
             },
-            usu_email:
+            email:
             {
                 required: 'Debe escribir su correo electrónico',
                 email:  'Debe escribir un correo electrónico valido',
             },
-            dep_id:
+            rol:
             {
-                required: "Debe seleccionar una dependencia",
+                required: "Debe seleccionar su rol",
             },
+            foto:
+            {
+                extension:"La extensión no es de imagenes"
+            }
         },
         errorPlacement: function (error,element)
         {

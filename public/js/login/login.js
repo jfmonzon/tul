@@ -7,40 +7,38 @@ $(document).ready(function()
             return true;
         }
     });
-
-    var min_pass=parseInt($("#usu_password").attr('min_pass'));
-    var max_pass=parseInt($("#usu_password").attr('max_pass'));
-    var min_login=parseInt($("#usu_login").attr('min_login'));
-    var max_login=parseInt($("#usu_login").attr('max_login'));
+    
     $("#form_login").validate({
         rules:
         {
-            usu_login:
+            email:
             {
                 required:true,
-                minlength:min_login,
-                maxlength:max_login,
+                minlength:5,
+                maxlength:100,
+                email:true,
             },
-            usu_password:
+            password:
             {
                 required:true,
-                minlength:min_pass,
-                maxlength:max_pass,
+                minlength:5,
+                maxlength:16,
             },
         },
         messages:
         {
-            usu_login:
+            email:
             {
-                required: "Debe escribir su nombre de usuario.",
-                minlength: "Su nombre de usuario debe tener mínimo "+min_login+" caracteres.",
-                maxlength: "Su nombre de usuario puede tener máximo "+max_login+" caracteres.",
+                required: "Debe escribir su correo electrónico.",
+                minlength: "Su correo electrónico debe tener mínimo 5 caracteres.",
+                maxlength: "Su correo electrónico puede tener máximo 100 caracteres.",
+                email: "El usuario que escribió no es un correo electrónico"
             },
-            usu_password:
+            password:
             {
                 required: "Debe escribir su contraseña de usuario.",
-                minlength: "Su contraseña debe tener mínimo "+min_pass+" caracteres.",
-                maxlength: "Su contraseña puede tener máximo "+max_pass+" caracteres."
+                minlength: "Su contraseña debe tener mínimo 5 caracteres.",
+                maxlength: "Su contraseña puede tener máximo 16 caracteres."
             },
         },
         errorPlacement: function (error,element)

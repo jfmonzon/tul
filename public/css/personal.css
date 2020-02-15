@@ -1,0 +1,30 @@
+html, body
+{
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+label.requerido:after, legend.requerido:after
+{
+    content: " *";
+    color: #e73d4a;
+}
+.filatabla
+{
+    font-size:14px;
+    line-height: 98%;
+}

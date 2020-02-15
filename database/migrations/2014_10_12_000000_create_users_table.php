@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('cedula')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('status');
+            $table->boolean('estatus');
             $table->string('password');
             $table->string('rol');
             $table->rememberToken();

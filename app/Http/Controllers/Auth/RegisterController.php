@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -48,10 +49,23 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        /*
+        if ($data['foto']=="")
+        {
+            $data['foto']='foto_base.gif';
+        }
+        */
+        $data['estatus']=true;
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nombre' => ['required', 'string', 'max:100'],
+            'fotos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'apellido' => ['required', 'string', 'max:100'],
+            'ocupacion' => ['required', 'string', 'max:100'],
+            'ciudad' => ['required', 'string', 'max:50'],
+            'cedula' => ['required',  'integer','unique:users'],
+            'rol' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
+            'password' => ['required', 'string', 'min:5', 'confirmed'],
         ]);
     }
 
@@ -63,10 +77,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+       
+       
+        if ($image = $data['fotos']) {
+            
+            foreach ($image as $files) {
+               
+                $destinationPath = 'images/'; // upload path
+                $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+                $files->move($destinationPath, $profileImage);
+                $insert[]['image'] = "$profileImage";
+            }
+        }else
+        {
+            $profileImage='foto.jpg';
+        }
+       
+       
         return User::create([
-            'name' => $data['name'],
+            'nombre' => $data['nombre'],
+            'apellido' => $data['apellido'],
+            'ocupacion' => $data['ocupacion'],
+            'ciudad' => $data['ciudad'],
+            'cedula'=> $data['cedula'],
+            'estatus'=>  true,
+            'rol' => $data['rol'],
+            'foto' => $profileImage,
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
         ]);
     }
+
+
 }

@@ -4,10 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <!-- estilos generales de bootstrap 4 -->
+        <link href="{{asset('general/css/bootstrap.min.css')}}" rel="stylesheet" />
+        <!-- estilos para iconos fontawesone -->
+        <link href="{{asset('general/css/all.min.css')}}" rel="stylesheet" />
+        <!-- fuentes -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" />
+    <title>{{ config('app.name', 'TulS') }}</title>
 
         <!-- Styles -->
         <style>
@@ -65,11 +68,20 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            
             @if (Route::has('login'))
                 <div class="top-right links">
+                   
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <form action="{{route('logout')}}" method="POST">
+                            <button >
+                                {{__('Cerrar Sesión')}}
+                            </button>
+                            @csrf
+                        </form>
                     @else
+                     
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
@@ -85,13 +97,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    
                 </div>
             </div>
         </div>
